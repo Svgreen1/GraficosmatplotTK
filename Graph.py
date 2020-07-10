@@ -26,9 +26,7 @@ class raiz(Tk):
         self.config(bd=25) ##borde
         self.config(relief="groove")
         self.config(bg="black")
-        #fondo=PhotoImage(file="uniajclogo.png")
-        #fondoimagen=Label(self, image=fondo).place(x=0,y=0)
-        slider=Scale(self,label="Tiempo", orient='horizontal').pack()
+        slider=Scale(self,label="Tiempo", orient='horizontal').pack() ##slider para variable tiempo(datetime) 
         ayudamenu=Menu(barramenu, tearoff=0)
         ayudamenu.add_command(label="Acerca de...", command=emergente)
         barramenu.add_cascade(label="Ayuda", menu=ayudamenu)
@@ -63,7 +61,7 @@ class raiz(Tk):
         canvas.get_tk_widget().pack(side=TOP, fill=X, expand=True)
     
 def emergente():
-    messagebox.showinfo("Agradecimientos", "Agradecimientos a la Uniajc y la honorable profesora Erika Sarria")
+    messagebox.showinfo("Agradecimientos", "Agradecimientos ")
 
 root = raiz()
 root.mainloop()
