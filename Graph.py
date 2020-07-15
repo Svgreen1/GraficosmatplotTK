@@ -3,17 +3,26 @@ from tkinter import *
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from tkinter import messagebox   ##libreria ventanas emergentes
-from tkinter import filedialog 
-
+from tkinter import filedialog  
+import datetime
+import numpy as np
+from ipywidgets import interact, interactive, fixed, interact_manual
+import ipywidgets as widgets
+from matplotlib import pyplot
+i=int()
 libro = "C:\\Users\\Sebastian_Valverde\\Desktop\\Excel\\servi.xlsx"
 df = pd.read_excel(libro, header=0, delim_whitespace=True)
 tabla = df[["media", "humedad", "temperatura", "fechahora"]]
 
-tX=tabla.get("fechahora")
+tX=tabla.get("fechahora") #.astype(str)
 aY=tabla.get("temperatura")
 bY=tabla.get("humedad")
 cY=tabla.get("media")
-
+#z= pd.to_datetime(df['fechahora']).astype(np.int64)
+#for i in range(0,len(tX),1):
+ #   tX[i].strftime("%m:%d:%H")
+    #print(i)
+k=tX[1].strftime("%m:%d:%H")
 class raiz(Tk):
     def __init__(self):
         super(raiz, self).__init__()
@@ -26,7 +35,9 @@ class raiz(Tk):
         self.config(bd=25) ##borde
         self.config(relief="groove")
         self.config(bg="black")
-        slider=Scale(self,label="Tiempo", orient='horizontal').pack() ##slider para variable tiempo(datetime) 
+        #fondo=PhotoImage(file="uniajclogo.png")
+        #fondoimagen=Label(self, image=fondo).place(x=0,y=0)
+        #slider=Scale(self,label="Dato de tiempo", orient='horizontal', variable=z, from_=z[0], to=(len(z)-164), command=valor1, length=400).pack()
         ayudamenu=Menu(barramenu, tearoff=0)
         ayudamenu.add_command(label="Acerca de...", command=emergente)
         barramenu.add_cascade(label="Ayuda", menu=ayudamenu)
@@ -39,6 +50,7 @@ class raiz(Tk):
         a.plot(tX,aY, color="yellow")
         a.grid(True)
         a.set_ylabel("°C Temperatura")
+        #toolbar=NavigationToolbar2Tk(a,self)
         canvas = FigureCanvasTkAgg(f, self)
         canvas.draw()
         ##segundo<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -59,10 +71,14 @@ class raiz(Tk):
         canvas3 = FigureCanvasTkAgg(h, self)
         canvas3.draw()
         canvas.get_tk_widget().pack(side=TOP, fill=X, expand=True)
-    
+        #interact(tX, i=1)
+        toolbar = NavigationToolbar2Tk(canvas, self).pack()
+def valor1(valor):
+    seleccion = "valor = " +str(valor)
+    print(seleccion)
 def emergente():
-    messagebox.showinfo("Agradecimientos", "Agradecimientos ")
-
+    messagebox.showinfo("Agradecimientos", "Agradecimientos a la Uniajc y la honorable profesora Erika Sarria")
+print(k)
 root = raiz()
 root.mainloop()
-#print(tX.head())
+
