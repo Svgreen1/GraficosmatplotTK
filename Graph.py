@@ -9,11 +9,14 @@ import numpy as np
 from ipywidgets import interact, interactive, fixed, interact_manual
 import ipywidgets as widgets
 from matplotlib import pyplot
+import sqlalchemy
+from sqlalchemy import create_engine
 i=int()
-libro = "C:\\Users\\Sebastian_Valverde\\Desktop\\Excel\\servi.xlsx"
-df = pd.read_excel(libro, header=0, delim_whitespace=True)
+#libro = "C:\\Users\\Sebastian_Valverde\\Desktop\\Excel\\servi.xlsx"
+#df = pd.read_excel(libro, header=0, delim_whitespace=True)
+engine= sqlalchemy.create_engine("mysql+pymysql://root:svalverde1@localhost:3306/servi")  #/credenciales de ingreso
+df=pd.read_sql_table("variable", engine)
 tabla = df[["media", "humedad", "temperatura", "fechahora"]]
-
 tX=tabla.get("fechahora") #.astype(str)
 aY=tabla.get("temperatura")
 bY=tabla.get("humedad")
@@ -23,8 +26,11 @@ cY=tabla.get("media")
  #   tX[i].strftime("%m:%d:%H")
     #print(i)
 k=tX[1].strftime("%m:%d:%H")
+class tk(NavigationToolbar2Tk):
+    toolitems = [t for t in NavigationToolbar2Tk.toolitems if
+                 t[0] in ('Home', 'Pan', 'Zoom', 'Save')]
 class raiz(Tk):
-    def __init__(self):
+    def __init__(self):     #crear objetos para raiz
         super(raiz, self).__init__()
         self.title("Monitor de variables")
         self.minsize(1200, 670)
@@ -72,12 +78,12 @@ class raiz(Tk):
         canvas3.draw()
         canvas.get_tk_widget().pack(side=TOP, fill=X, expand=True)
         #interact(tX, i=1)
-        toolbar = NavigationToolbar2Tk(canvas, self).pack()
+        toolbar = NavigationToolbar2Tk(canvas, self).pack(side=LEFT)
 def valor1(valor):
     seleccion = "valor = " +str(valor)
     print(seleccion)
 def emergente():
-    messagebox.showinfo("Agradecimientos", "Agradecimientos a la Uniajc y la honorable profesora Erika Sarria")
+    messagebox.showinfo("Agradecimientos", "Agradecimientos a la Uniajc y la honorable profesora Erika Sarria y a la polliz marxe")
 print(k)
 root = raiz()
 root.mainloop()
