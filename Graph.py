@@ -11,24 +11,17 @@ import ipywidgets as widgets
 from matplotlib import pyplot
 import sqlalchemy
 from sqlalchemy import create_engine
-i=int()
+
 #libro = "C:\\Users\\Sebastian_Valverde\\Desktop\\Excel\\servi.xlsx"
-#df = pd.read_excel(libro, header=0, delim_whitespace=True)
-engine= sqlalchemy.create_engine("mysql+pymysql://root:svalverde1@localhost:3306/servi")  #/credenciales de ingreso
-df=pd.read_sql_table("variable", engine)
+df = pd.read_excel(libro, header=0, delim_whitespace=True)
+#engine= sqlalchemy.create_engine("mysql+pymysql://root:svalverde1@localhost:3306/servi")  #/credenciales de ingreso
+#df=pd.read_sql_table("variable", engine)
 tabla = df[["media", "humedad", "temperatura", "fechahora"]]
 tX=tabla.get("fechahora") #.astype(str)
 aY=tabla.get("temperatura")
 bY=tabla.get("humedad")
 cY=tabla.get("media")
-#z= pd.to_datetime(df['fechahora']).astype(np.int64)
-#for i in range(0,len(tX),1):
- #   tX[i].strftime("%m:%d:%H")
-    #print(i)
-k=tX[1].strftime("%m:%d:%H")
-class tk(NavigationToolbar2Tk):
-    toolitems = [t for t in NavigationToolbar2Tk.toolitems if
-                 t[0] in ('Home', 'Pan', 'Zoom', 'Save')]
+
 class raiz(Tk):
     def __init__(self):     #crear objetos para raiz
         super(raiz, self).__init__()
@@ -83,7 +76,7 @@ def valor1(valor):
     seleccion = "valor = " +str(valor)
     print(seleccion)
 def emergente():
-    messagebox.showinfo("Agradecimientos", "Agradecimientos a la Uniajc y la honorable profesora Erika Sarria y a la polliz marxe")
+    messagebox.showinfo("Agradecimientos", "Agradecimientos a ")
 print(k)
 root = raiz()
 root.mainloop()
