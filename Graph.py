@@ -11,9 +11,12 @@ import ipywidgets as widgets
 from matplotlib import pyplot
 import sqlalchemy
 from sqlalchemy import create_engine
-
-#libro = "C:\\Users\\Sebastian_Valverde\\Desktop\\Excel\\servi.xlsx"
+#$$$$$$$$$$$$$$lectura exel
+libro = "C:\\Users\\Sebastian_Valverde\\Desktop\\Excel\\servi.xlsx"
 df = pd.read_excel(libro, header=0, delim_whitespace=True)
+
+
+###$###
 #engine= sqlalchemy.create_engine("mysql+pymysql://root:svalverde1@localhost:3306/servi")  #/credenciales de ingreso
 #df=pd.read_sql_table("variable", engine)
 tabla = df[["media", "humedad", "temperatura", "fechahora"]]
