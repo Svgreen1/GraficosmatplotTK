@@ -1,0 +1,9 @@
+CREATE DATABASE servi;
+
+CREATE TABLE variable(
+	media FLOAT NOT NULL,
+	desviacion FLOAT NOT NULL,
+ 	humedad FLOAT NOT NULL, 
+	temperatura FLOAT NOT NULL,
+	suelohumedad FLOAT NOT NULL,
+	fechahora datetime NOT NULL DEFAULT CURRENT_TIMESTAMP);
